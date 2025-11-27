@@ -15,6 +15,7 @@ const slides = [
   { id: 6, title: "Hotel Wellness (Yellow)", component: HotelWellnessSlide },
   { id: 7, title: "Job-Loss (Red)", component: JobLossSlide },
   { id: 8, title: "Next Steps", component: NextStepsSlide },
+  { id: 9, title: "Thanks", component: ThankYouSlide },
 ];
 
 export default function App() {
@@ -250,7 +251,7 @@ function TitleSlide() {
         transition={{ delay: 0.6 }}
         className="mt-8"
       >
-        <p className="text-slate-400 drop-shadow-md">November 27, 2025</p>
+        <p className="text-slate-400 drop-shadow-md">November 28, 2025</p>
       </motion.div>
 
       <motion.div
@@ -268,9 +269,15 @@ function TitleSlide() {
 function HypothesisFunnelSlide() {
   const stages = [
     { label: "Initial Hypotheses", count: 20, width: "100%", color: "from-slate-700 to-slate-600" },
-    { label: "4 Criteria Evaluation", count: "→", width: "75%", color: "from-blue-700 to-blue-600" },
     { label: "Shortlisted", count: 10, width: "50%", color: "from-orange-700 to-orange-600" },
     { label: "Selected", count: 4, width: "25%", color: "from-emerald-700 to-emerald-600" },
+  ];
+
+  const criteria = [
+    { name: "Viability", percentage: 40, color: "from-emerald-600 to-emerald-700" },
+    { name: "Desirability", percentage: 30, color: "from-blue-600 to-blue-700" },
+    { name: "Contextuality", percentage: 20, color: "from-orange-600 to-orange-700" },
+    { name: "Feasibility", percentage: 10, color: "from-amber-600 to-amber-700" },
   ];
 
   return (
@@ -285,36 +292,78 @@ function HypothesisFunnelSlide() {
           </span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="py-12">
-        <div className="space-y-8 max-w-4xl mx-auto">
-          {stages.map((stage, index) => (
-            <motion.div
-              key={index}
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2 + index * 0.2 }}
-              className="flex flex-col items-center"
-            >
+      <CardContent className="py-8">
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Funnel */}
+          <div className="space-y-8">
+            {stages.map((stage, index) => (
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                style={{ width: stage.width }}
-                className={`bg-gradient-to-r ${stage.color} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer`}
+                key={index}
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 + index * 0.2 }}
+                className="flex flex-col items-center"
               >
-                <div className="flex justify-between items-center">
-                  <span className="text-white drop-shadow-md">{stage.label}</span>
-                  <span className="text-2xl text-white drop-shadow-md">{stage.count}</span>
-                </div>
-              </motion.div>
-              {index < stages.length - 1 && (
                 <motion.div
-                  initial={{ scaleY: 0 }}
-                  animate={{ scaleY: 1 }}
-                  transition={{ delay: 0.4 + index * 0.2 }}
-                  className="w-0.5 h-8 bg-gradient-to-b from-slate-500 to-transparent my-2"
-                />
-              )}
-            </motion.div>
-          ))}
+                  whileHover={{ scale: 1.05 }}
+                  style={{ width: stage.width }}
+                  className={`bg-gradient-to-r ${stage.color} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer`}
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="text-white drop-shadow-md">{stage.label}</span>
+                    <span className="text-2xl text-white drop-shadow-md">{stage.count}</span>
+                  </div>
+                </motion.div>
+                {index < stages.length - 1 && (
+                  <motion.div
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ delay: 0.4 + index * 0.2 }}
+                    className="w-0.5 h-8 bg-gradient-to-b from-slate-500 to-transparent my-2"
+                  />
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Assessment Criteria Bar Chart */}
+          <div>
+            <motion.h3
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-slate-200 mb-6 drop-shadow-md"
+            >
+              Hypotheses Assessment Criteria:
+            </motion.h3>
+            <div className="space-y-5">
+              {criteria.map((criterion, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ x: 100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 + index * 0.15 }}
+                  whileHover={{ scale: 1.03, x: 5 }}
+                  className="cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-slate-200 text-sm drop-shadow-sm">{criterion.name}</span>
+                    {/* <span className="text-slate-300 drop-shadow-sm">{criterion.percentage}%</span> */}
+                  </div>
+                  <div className="relative h-10 bg-slate-900/50 rounded-lg overflow-hidden border border-slate-700 shadow-inner">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${criterion.percentage}%` }}
+                      transition={{ delay: 0.5 + index * 0.15, duration: 0.8, ease: "easeOut" }}
+                      className={`h-full bg-gradient-to-r ${criterion.color} shadow-lg flex items-center justify-end pr-3`}
+                    >
+                      <span className="text-white text-sm drop-shadow-md">{criterion.percentage}%</span>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -326,7 +375,7 @@ function FourHypothesesSlide() {
     { name: "Surgery Life Insurance", icon: "🏥" },
     { name: "Event-Based Life Insurance", icon: "🎫" },
     { name: "Hotel Wellness Life Insurance", icon: "🏨" },
-    { name: "Job-Loss Due to Illness", icon: "💼" },
+    { name: "Job-Loss Due to Illness Life Insurance", icon: "💼" },
   ];
 
   return (
@@ -370,7 +419,7 @@ function TrafficLightSlide() {
       status: "RED",
       color: "red",
       icon: XCircle,
-      items: ["Job-Loss Due to Illness"],
+      items: ["Job-Loss Due to Illness Life Insurance"],
       lightIndex: 0,
     },
     {
@@ -692,7 +741,7 @@ function EventBasedLifeSlide() {
             {[
               "Demand cannot be validated until iTicket confirms tests",
               "High dependency on iTicket commitment",
-              "B2C interviews show interest, but need platform validation",
+              "B2C interviews show partial interest <30% and this makes it hard to scale if it is provided as optional purchase.",
             ].map((item, i) => (
               <motion.li
                 key={i}
@@ -779,7 +828,6 @@ function HotelWellnessSlide() {
           <ul className="space-y-2 text-slate-100 text-sm">
             {[
               "Concept promising but slow decision pace",
-              "Needs Ops/BD alignment for implementation",
               "Hotel industry requires longer decision cycles",
             ].map((item, i) => (
               <motion.li
@@ -900,6 +948,7 @@ function NextStepsSlide() {
         "Organize underwriting + legal joint meeting",
         "Draft first version of coverage packages",
         "Schedule follow-up meetings with clinics",
+        "New clinics interviews will be conducted"
       ],
     },
     {
@@ -927,7 +976,7 @@ function NextStepsSlide() {
       ],
     },
     {
-      title: "Job-Loss Due to Illness",
+      title: "Job-Loss Due to Illness Life Insurance",
       status: "RED",
       color: "red",
       icon: XCircle,
@@ -947,54 +996,79 @@ function NextStepsSlide() {
           </span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {sections.map((section, index) => {
           const Icon = section.icon;
           return (
-            <motion.div
-              key={index}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 + index * 0.15 }}
-              whileHover={{ scale: 1.02, x: 5 }}
-              className={`bg-gradient-to-r from-${section.color}-950/60 to-${section.color}-900/30 border-l-4 border-${section.color}-500 p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer`}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <Icon className={`w-5 h-5 text-${section.color}-400`} />
-                <h3 className={`text-${section.color}-200 drop-shadow-md`}>{section.title}</h3>
-                <Badge className={`bg-${section.color}-600 hover:bg-${section.color}-700 shadow-md text-xs`}>
-                  {section.status}
-                </Badge>
-              </div>
-              <ul className="space-y-2 text-sm text-slate-200">
-                {section.steps.map((step, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 + index * 0.15 + i * 0.05 }}
-                    className="flex items-start gap-2"
-                  >
-                    <span className={`w-1.5 h-1.5 bg-${section.color}-400 rounded-full mt-1.5 flex-shrink-0`} />
-                    {step}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+        <motion.div
+          key={index}
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 + index * 0.15 }}
+          whileHover={{ scale: 1.02, x: 5 }}
+          className={`bg-gradient-to-r from-${section.color}-950/60 to-${section.color}-900/30 border-l-4 border-${section.color}-500 p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer h-full`}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <Icon className={`w-5 h-5 text-${section.color}-400`} />
+            <h3 className={`text-${section.color}-200 drop-shadow-md`}>{section.title}</h3>
+            <Badge className={`bg-${section.color}-600 hover:bg-${section.color}-700 shadow-md text-xs`}>
+          {section.status}
+            </Badge>
+          </div>
+          <ul className="space-y-2 text-sm text-slate-200">
+            {section.steps.map((step, i) => (
+          <motion.li
+            key={i}
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3 + index * 0.15 + i * 0.05 }}
+            className="flex items-start gap-2"
+          >
+            <span className={`w-1.5 h-1.5 bg-${section.color}-400 rounded-full mt-1.5 flex-shrink-0`} />
+            {step}
+          </motion.li>
+            ))}
+          </ul>
+        </motion.div>
           );
         })}
 
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-8 text-center"
-        >
-          <div className="inline-block bg-gradient-to-r from-orange-950/40 to-blue-900/40 border border-orange-600/50 px-6 py-3 rounded-lg shadow-lg shadow-orange-900/20">
-            <p className="text-slate-200 text-sm drop-shadow-sm">Sprint III begins next week</p>
-          </div>
-        </motion.div>
+   
       </CardContent>
     </Card>
+  );
+}
+
+
+function ThankYouSlide() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="text-center py-24"
+    >
+      <motion.h1
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.4, type: "spring" }}
+        className="text-7xl font-extrabold mb-6 bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(251,146,60,0.6)]"
+      >
+      <h1 className="text-6xl mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(251,146,60,0.6)]">
+          Thanks
+        </h1>
+      </motion.h1>
+
+      <motion.p
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="text-xl text-slate-300"
+      >
+        Thank you for your time — Sprint II Review
+      </motion.p>
+
+   
+    </motion.div>
   );
 }
