@@ -616,7 +616,7 @@ function SurgeryLifeSlide() {
           transition={{ delay: 0.3 }}
           className="bg-slate-900/50 p-5 rounded-lg shadow-lg"
         >
-          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint II)</h3>
+          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint I)</h3>
           <ul className="space-y-2 text-slate-200 text-sm">
             {[
               "Caspian interviews (2x)",
@@ -706,7 +706,7 @@ function EventBasedLifeSlide() {
           transition={{ delay: 0.3 }}
           className="bg-slate-900/50 p-5 rounded-lg shadow-lg"
         >
-          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint II)</h3>
+          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint I)</h3>
           <ul className="space-y-2 text-slate-200 text-sm">
             {[
               "B2C CusDev questions prepared",
@@ -797,7 +797,7 @@ function HotelWellnessSlide() {
           transition={{ delay: 0.3 }}
           className="bg-slate-900/50 p-5 rounded-lg shadow-lg"
         >
-          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint II)</h3>
+          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint I)</h3>
           <ul className="space-y-2 text-slate-200 text-sm">
             {[
               "TABIA interview completed",
@@ -884,7 +884,7 @@ function JobLossSlide() {
           transition={{ delay: 0.3 }}
           className="bg-slate-900/50 p-5 rounded-lg shadow-lg"
         >
-          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint II)</h3>
+          <h3 className="text-blue-300 mb-3 drop-shadow-md">Actions (Sprint I)</h3>
           <ul className="space-y-2 text-slate-200 text-sm">
             {[
               "Meeting with PASHA Holding HR",
@@ -961,7 +961,7 @@ function NextStepsSlide() {
         "  – Fake-door test approval",
         "  – A/B pricing test",
         "  – Statistical data sharing",
-        "Park hypothesis if no progress by end of Sprint III",
+        "Park hypothesis if no progress by end of Sprint II",
       ],
     },
     {
@@ -972,7 +972,7 @@ function NextStepsSlide() {
       steps: [
         "Receive TABIA response on December 1",
         "Schedule second meeting with TABIA Ops/BD team",
-        "Park hypothesis if no progress by end of Sprint III",
+        "Park hypothesis if no progress by end of Sprint II",
       ],
     },
     {
