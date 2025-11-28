@@ -140,7 +140,7 @@ const toggleFullscreen = () => {
             >
               <Home className="w-4 h-4" />
             </Button>
-            <span className="text-slate-400 text-sm">Sprint II Review — Discovery Team</span>
+            <span className="text-slate-400 text-sm">Sprint I Review — Discovery Team</span>
           </motion.div>
 
           <motion.div
@@ -233,7 +233,7 @@ function TitleSlide() {
         transition={{ delay: 0.2, type: "spring" }}
       >
         <h1 className="text-6xl mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(251,146,60,0.6)]">
-          Sprint II Review
+          Sprint I Review
         </h1>
       </motion.div>
 
@@ -1065,7 +1065,7 @@ function ThankYouSlide() {
         transition={{ delay: 0.6 }}
         className="text-xl text-slate-300"
       >
-        Thank you for your time — Sprint II Review
+        Thank you for your time — Sprint I Review
       </motion.p>
 
    
