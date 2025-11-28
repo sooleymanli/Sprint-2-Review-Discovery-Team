@@ -650,7 +650,7 @@ function SurgeryLifeSlide() {
             {[
               "High demand from hospitals",
               "Concept validated by stakeholders",
-              "Customized packages required per hospital type",
+              "Customized packages required per hospital and surgery category",
             ].map((item, i) => (
               <motion.li
                 key={i}
@@ -714,7 +714,7 @@ function EventBasedLifeSlide() {
               "Contacted iTicket for extra data request",
               "Fake-door test proposal submitted",
               "A/B pricing test planned",
-              "No commitment from iTicket yet",
+              "Pushed iTicket to conduct fakedoor test",
             ].map((item, i) => (
               <motion.li
                 key={i}
